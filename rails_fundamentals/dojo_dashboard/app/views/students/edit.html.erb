@@ -1,0 +1,52 @@
+<div class="container">
+    <h1 class="row display-4 justify-content-center">Editing <%= @student.first_name %> <%= @student.last_name %></h1>
+    <hr>
+    <div class="row justify-content-center my-2">
+        <% if @errors %>
+            <ul>
+                <% @errors.each do |error| %>
+                    <li class="red"><%= error %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    </div>
+    <form class="form" action="<%= dojo_student_path(@dojo.id, @student.id) %>" method="POST">
+        <input type="hidden" name="_method" value="patch">
+        <input name="authenticity_token" value="<%= 
+        form_authenticity_token %>" type='hidden'>
+        <div class="row">
+            <label class="col-sm-3" for="first_name">First Name:</label>
+            <input placeholder="<%= @student.first_name %>" class="col-sm-6 form-control" type="text" name="student[first_name]" id="first_name">
+        </div>
+        <div class="row my-4">
+            <label class="col-sm-3" for="last_name">Last Name:</label>
+            <input placeholder="<%= @student.last_name %>" class="col-sm-6 form-control" type="text" name="student[last_name]" id="last_name">
+        </div>
+        <div class="row my-4">
+            <label class="col-sm-3" for="email">Email Address:</label>
+            <input placeholder="<%= @student.email %>" class="col-sm-6 form-control" type="text" name="student[email]" id="email">
+        </div>
+        <div class="row my-4">
+            <label class="col-sm-3" for="dojo">Dojo:</label>
+            <select class="col-sm-6 form-control" type="text" name="student[dojo]" id="dojo">
+                <% @dojos.each do |dojo| %>
+                    <% if dojo == @dojo %>
+                        <option value="<%= dojo.id %>" selected><%= dojo.branch %></option>
+                    <% else %>
+                        <option value="<%= dojo.id %>"><%= dojo.branch %></option>
+                    <% end %>
+                <% end %>
+            </select>
+        </div>
+        <div class="row my-4">
+            <input class="offset-sm-3 col-sm-6 form-control btn btn-dark" type="submit" value="Update">
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <a href="<%= dojos_path %>">Home</a> |
+            <a href="<%= dojo_path(@dojo.id) %>"><%= @dojo.branch %></a> |
+            <a href="<%= dojo_student_path(@dojo.id, @student.id) %>"><%= @student.first_name %></a>
+        </div>
+    </div>
+</div>

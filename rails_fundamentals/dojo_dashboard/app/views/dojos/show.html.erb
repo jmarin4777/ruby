@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <h1 class="col-sm-4 display-4"><%= @dojo.branch %></h1>
+        <a class="col-sm-3 align-self-center" href="<%= edit_dojo_path(@dojo.id) %>">Edit</a>
+    </div>
+    <hr>
+    <div class="row">
+        <p class="lead col">Address: <%= @dojo.street %></p>
+    </div>
+    <div class="row">
+        <p class="lead col">City: <%= @dojo.city %></p>
+        <p class="lead col">State: <%= @dojo.state %></p>
+    </div>
+    <h1 class="row display-4 justify-content-center mb-4">Student Roster(<%= @students.count %>)</h1>
+    <table class="table table-dark">
+        <thead>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+        </thead>
+        <tbody>
+            <% @students.each do |student| %>
+                <tr>
+                    <td><%= student.first_name %></td>
+                    <td><%= student.last_name %></td>
+                    <td><%= student.email %></td>
+                    <td>
+                        <a href="<%= dojo_student_path(@dojo.id, student.id) %>">Show</a> |
+                        <a href="<%= edit_dojo_student_path(@dojo.id, student.id) %>">Edit</a> |
+                        <%= link_to "Destroy", dojo_student_path(@dojo.id, student.id), method: :delete, data: { confirm: 'Are you sure?'}%>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <div class="row justify-content-between">
+        <a class="col-sm-3" href="<%= dojos_path %>">Home</a>
+        <a class="col-sm-3 text-right" href="<%= new_dojo_student_path(@dojo.id) %>">Add Student</a>
+    </div>
+</div>

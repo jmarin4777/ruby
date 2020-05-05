@@ -1,0 +1,3 @@
+Blog.find(5).messages.joins(:user).select(:id, :message, :user_id, :
+first_name, :last_name, :email)
+Blog.first.owners.delete(User.first.id)

@@ -1,0 +1,35 @@
+<h1 class="row display-4">Welcome <%= @user.name %>!</h1>
+<form class="form" action="/posts" method="POST">
+    <input name="authenticity_token" value="<%= 
+    form_authenticity_token %>" type='hidden'>
+    <div class="row my-4 justify-content-between">
+        <textarea class="col-sm-9 form-control" name="post[content]" rows="3"></textarea>
+        <input class="col-sm-2 form-control align-self-center" type="submit" value="Idea!">
+    </div>
+</form>
+<hr>
+<% @posts.sort_by { |p| p.likes.count*-1 }.each do |p| %>
+    <div class="row">
+        <p class="lead col-sm-3 align-self-center"><a href="<%= user_path(id: p.user.id) %>"><%= p.user.name %></a> says:</p>
+        <p class="col-sm-9 align-self-center"><%= p.content %></p>
+    </div>
+    <div class="row">
+        <form class="form col-sm-3" action="/likes" method="POST">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
+            <input type="hidden" name="post" value="<%= p.id %>">
+            <input type="submit" class="form-control btn btn-link text-left p-0" value="Like">
+        </form>
+        <div class="col-sm-3 align-self-center"><a href="/bright_ideas/<%= p.id %>"><%= p.likes.count %></a> people like this</div>
+        <% if current_user == p.user %>
+            <div class="offset-sm-3 col-sm-3">
+                <form class="form" action="/posts" method="POST">
+                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="post" value="<%= p.id %>">
+                    <input type="submit" class="form-control btn btn-danger" value="Delete Idea">
+                </form>
+            </div>
+        <% end %>
+    </div>
+    <hr>
+<% end %>

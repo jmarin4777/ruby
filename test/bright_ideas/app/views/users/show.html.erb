@@ -1,0 +1,13 @@
+<div class="row">
+    <p class="lead mb-0"><a href="/bright_ideas">Home</a></p>
+</div>
+<div class="row">
+    <p class="col-12 lead">Name: <%= @user.name %></p>
+    <p class="col-12 lead">Username: <%= @user.username %></p>
+    <p class="col-12 lead">Email: <%= @user.email %></p>
+</div>
+<hr>
+<div class="row">
+    <p class="col-12 lead">Total Number of Posts: <%= @user.posts.count %></p>
+    <p class="col-12 lead">Total Number of Likes: <%= @user.likes.count %></p>
+</div>

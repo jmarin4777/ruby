@@ -1,0 +1,28 @@
+<div class="container">
+    <h1 class="row display-4 justify-content-center mb-4">All Dojos(<%= @dojos.count %>)</h1>
+    <table class="table">
+        <thead>
+            <th scope="col">Coding Dojo Branch</th>
+            <th scope="col">Street</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Actions</th>
+        </thead>
+        <tbody>
+            <% @dojos.each do |dojo| %>
+                <tr>
+                    <td><%= dojo.branch %></td>
+                    <td><%= dojo.street %></td>
+                    <td><%= dojo.city %></td>
+                    <td><%= dojo.state %></td>
+                    <td>
+                        <a href="<%= dojo_path(dojo.id) %>">Show</a> |
+                        <a href="<%= edit_dojo_path(dojo.id) %>">Edit</a> |
+                        <%= link_to "Destroy", dojo, method: :delete, data: { confirm: 'Are you sure?'}%>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <a href="<%= new_dojo_path %>">New Dojo</a>
+</div>

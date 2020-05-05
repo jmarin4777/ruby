@@ -1,0 +1,2 @@
+Find all the users that aren't friends with the first user
+User.where.not(id: User.first.friends).where.not(id: User.first)

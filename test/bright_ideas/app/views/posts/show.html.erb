@@ -1,0 +1,26 @@
+<div class="row">
+    <p class="lead mb-0"><a href="/bright_ideas">Home</a></p>
+</div>
+<hr>
+<div class="row">
+    <p class="lead col-sm-3 align-self-center"><a href="<%= user_path(id: @post.user.id) %>"><%= @post.user.name %></a> says:</p>
+    <p class="col-sm-9 align-self-center"><%= @post.content %></p>
+</div>
+<hr>
+<p class="row lead">People who liked this post:</p>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @post.users.each do |u| %>
+            <tr>
+                <td><a href="/users/<%= u.id %>"><%= u.username %></a></td>
+                <td><%= u.name %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

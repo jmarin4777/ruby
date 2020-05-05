@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row text-center">
+        <h1 class="offset-sm-3 col-sm-6 display-4">New Dojo</h1>
+    </div>
+    <hr>
+    <div class="row justify-content-center my-2">
+        <% if @errors %>
+            <ul>
+                <% @errors.each do |error| %>
+                    <li class="red"><%= error %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    </div>
+    <form class="form" action="<%= dojos_path %>" method="POST">
+        <input name="authenticity_token" value="<%= 
+        form_authenticity_token %>" type='hidden'>
+        <div class="row">
+            <label class="col-sm-3" for="branch">Branch:</label>
+            <input class="col-sm-6 form-control" type="text" name="dojo[branch]" id="branch">
+        </div>
+        <div class="row my-4">
+            <label class="col-sm-3" for="street">Street</label>
+            <input class="col-sm-6 form-control" type="text" name="dojo[street]" id="street">
+        </div>
+        <div class="row my-4">
+            <label class="col-sm-3" for="city">City:</label>
+            <input class="col-sm-6 form-control" type="text" name="dojo[city]" id="city">
+        </div>
+        <div class="row my-4">
+            <label class="col-sm-3" for="state">State:</label>
+            <input class="col-sm-6 form-control" type="text" name="dojo[state]" id="state">
+        </div>
+        <div class="row my-4">
+            <input class="offset-sm-3 col-sm-6 form-control btn btn-dark" type="submit" value="Create">
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <a href="<%= dojos_path %>">Home</a>
+        </div>
+    </div>
+</div>

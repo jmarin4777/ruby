@@ -1,0 +1,37 @@
+<form action='/result' method='POST'>
+    <input name="authenticity_token" value="<%= 
+    form_authenticity_token %>" type='hidden'>
+    <label for="name">Your Name:</label>
+    <input id="name" type='text' name="ninja[name]">
+    <br>
+    <label for="dojo">Dojo Location:</label>
+    <select id="dojo" name="ninja[dojo]">
+        <option disabled selected value=''>Choose a Dojo</option>
+        <option>Silicon Valley</option>
+        <option>Seattle</option>
+        <option>Los Angeles</option>
+        <option>Online</option>
+        <option>Dallas</option>
+        <option>Arlington</option>
+        <option>Chicago</option>
+        <option>Tulsa</option>
+        <option>Oakland</option>
+        <option>Boise</option>
+        <option>Orange County</option>
+    </select>
+    <br>
+    <label for="lang">Favorite Language:</label>
+    <select id="lang" name="ninja[lang]">
+        <option disabled selected value=''>Choose a Language</option>
+        <option>Java</option>
+        <option>Python</option>
+        <option>C#/.NET</option>
+        <option>MEAN</option>
+        <option>Ruby on Rails</option>
+    </select>
+    <br>
+    <label for="comment">Comment (optional):</label>
+    <textarea id="comment" name="ninja[comment]"></textarea>
+    <br>
+    <input type='submit' value='Submit'>
+</form>

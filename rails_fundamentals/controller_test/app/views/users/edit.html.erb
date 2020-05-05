@@ -1,0 +1,6 @@
+<form action='/users/update' method='POST'>
+    <input name="authenticity_token" value="<%= 
+    form_authenticity_token %>" type='hidden'>
+    <input type='text' name='name' placeholder="<%= @user.name %>">
+    <input type='submit' value='Update'>
+</form>

@@ -1,0 +1,13 @@
+<% if flash[:errors] %>
+    <h1>Error(s) when submitting form: <%= flash[:errors] %></h1>
+    <% else %>
+    <h1>Thanks for submitting this form!  You have successfully
+    submitted this form <%= @times %> times now.</h1>
+<% end %>
+<h1><u>Submitted Information</u></h1>
+<h1>Name: <%= @ninja['name'] %></h1>
+<h1>Dojo Location: <%= @ninja['dojo'] %></h1>
+<h1>Favorite Language: <%= @ninja['lang']  %></h1>
+<h1>Comment: <%= @ninja['comment'] %></h1>
+<h1><a href="/">Go Back</a></h1>
+

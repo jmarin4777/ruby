@@ -1,0 +1,53 @@
+<% content_for :left_column do %>
+<h1 class="display-4 text-center">All Posts</h1>
+<table class="table table-dark">
+    <thead>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">Author</th>
+    </thead>
+    <tbody>
+        <% @posts.each do |post| %>
+            <tr>
+                <td><%= post.title %></td>
+                <td><%= post.content %></td>
+                <td><%= post.user.first_name %> <%= post.user.last_name %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<% end %>
+
+<% content_for :middle_column do %>
+<h1 class="display-4 text-center">New Post</h1>
+<form class="form" action="/posts" method="POST">
+    <input name="authenticity_token" value="<%= 
+    form_authenticity_token %>" type='hidden'>
+    <div class="row no-gutters">
+        <label class="col-sm-12" for="title">Title:</label>
+        <input class="col-sm-12 form-control" type="text" name="post[title]" id="title">
+    </div>
+    <div class="row no-gutters my-4">
+        <label class="col-sm-12" for="content">Content:</label>
+        <textarea class="col-sm-12 form-control" rows="5" name="post[content]" id="content"></textarea>
+    </div>
+    <div class="row no-gutters my-4">
+        <label class="col-sm-12" for="user">Favorite Language:</label>
+        <select class="col-sm-12 form-control" name="post[user]" id="user">
+            <% @users.each do |user| %>
+                <option value="<%= user.id %>"><%= user.first_name %> <%= user.last_name %></option>
+            <% end %>
+        </select>
+    </div>
+    <div class="row no-gutters my-4">
+        <input class="offset-sm-3 col-sm-6 form-control btn btn-dark" type="submit" value="Submit">
+    </div>
+</form>
+<% end %>
+
+<% content_for :right_column do %>
+<h1 class="display-4 text-center">Go to Users Page</h1>
+<div class="row">
+    <a href="/users" class="offset-sm-3 col-sm-6 btn btn-primary">All Users</a>
+</div>
+<% end %>
